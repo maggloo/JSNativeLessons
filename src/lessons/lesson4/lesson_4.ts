@@ -101,6 +101,7 @@ function print(param:  string) {
 // Получите результаты работы промисов, объедините свойства объектов
 // и выведите в консоль {name, age, city}
 
+/*
 let newObj: any = {};
 
 let a = new Promise((res, rej) => {
@@ -125,8 +126,34 @@ let c = new Promise((res, rej) => {
     console.log(newObj)
 })
 
+*/
 
 
+
+
+function testAsync() {
+    console.log('1')
+
+    setTimeout(() => {
+        console.log('2')
+    }, 0)
+
+    function count() {
+        console.log('3')
+    }
+
+    const res = new Promise((res) => {
+        console.log('4')
+
+        res('5')
+    })
+
+    count();
+    console.log(res)
+}
+
+console.clear();
+testAsync();
 
 
 
