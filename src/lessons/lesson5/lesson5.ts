@@ -186,6 +186,109 @@ One.hi.call(Two)*/
 // Реализовать задачи 2-4 из Bind с помощью Call
 
 
+// learn js.ru
+
+//1
+
+let calculator = {
+    a: 0,
+    b: 0,
+    read() {
+        // @ts-ignore
+        this.a = +prompt('a?', 0);
+        // @ts-ignore
+        this.b = +prompt('b?', 0);
+    },
+
+    sum() {
+        return this.a + this.b
+    },
+    mul() {
+        return this.a * this.b
+    }
+};
+
+/*
+calculator.read();
+alert( calculator.sum() );
+alert( calculator.mul() );
+*/
+
+//2
+
+
+let ladder = {
+    step: 0,
+    up() {
+        this.step++;
+        return this;
+    },
+    down() {
+        this.step--;
+        return this;
+    },
+    showStep: function() { // показывает текущую ступеньку
+        alert( this.step );
+        return this;
+    }
+};
+
+// ladder.up().up().down().showStep().down().showStep();
+
+//call apply
+
+function sumArgs() {
+
+    // @ts-ignore
+    return [].reduce.call(arguments, function(a, b) {
+        return a + b;
+    });
+   /* return rest.reduce(function(a, b) {
+        return a + b;
+    });*/
+}
+//
+// @ts-ignore
+// console.log(( sumArgs(4, 5, 6)))
+
+/*function askPassword(ok, fail) {
+    let password = prompt("Password?", '');
+    if (password == "rockstar") ok();
+    else fail();
+}
+
+let user = {
+    name: 'Вася',
+
+    loginOk() {
+        alert(`${this.name} logged in`);
+    },
+
+    loginFail() {
+        alert(`${this.name} failed to log in`);
+    },
+
+};*/
+
+// askPassword(user.loginOk.bind(user), user.loginFail.bind(user));
+
+
+function askPassword(ok: any, fail: any) {
+    let password = prompt("Password?", '');
+    if (password == "rockstar") ok();
+    else fail();
+}
+
+let user = {
+    name: 'John',
+
+    login(result: boolean) {
+        alert( this.name + (result ? ' logged in' : ' failed to log in') );
+    }
+};
+
+// askPassword(user.login.bind(user,true), user.login.bind(user, false)); // ?
+//
 
 // just a plug
 export default () => {};
